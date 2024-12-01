@@ -1,0 +1,29 @@
+<?xml version='1.0' ?>
+<BuildGraph xmlns="http://www.epicgames.com/BuildGraph" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.epicgames.com/BuildGraph Schema.xsd" >
+
+	<Option Name="ProjectRoot" Restrict=".*" DefaultValue="" Description="" />
+	<Option Name="ProjectName" Restrict=".*" DefaultValue="" Description="" />
+
+	<Property Name="ProjectPath" Value="$(ProjectRoot)/$(ProjectName).uproject" />
+	<Property Name="EditorTarget" Value="$(ProjectName)Editor" />
+
+	<Agent Name="BuildEditor" Type="UEWindowsRunner">
+		<Node Name="BuildEditor">
+			<Compile
+				Target="$(EditorTarget)"
+				Platform="Win64"
+				Configuration="Development"
+				Project="$(ProjectPath)"
+			/>
+		</Node>
+	</Agent>
+
+	<Agent Name="RunCommandlet" Type="UEWindowsRunner">
+		<Node Name="RunCommandlet" Requires="BuildEditor">
+			<Commandlet Name="AdventOfCode" Project="$(ProjectPath)" />
+		</Node>
+	</Agent>
+
+	<Aggregate Name="BuildAndRunCommandlet" Requires="RunCommandlet" />
+
+</BuildGraph>
