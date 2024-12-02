@@ -1,12 +1,11 @@
-#include "Task011.h"
+#include "Task021.h"
 
 #include "Misc/DefaultValueHelper.h"
 #include "Misc/FileHelper.h"
-#include "Misc/Paths.h"
 
 DECLARE_LOG_CATEGORY_CLASS(LogTask, All, All);
 
-FString FTask011::Run(const FString& InputFileName)
+FString FTask021::Run(const FString& InputFileName)
 {
 	FString FileContent;
 	checkf(FFileHelper::LoadFileToString(FileContent, *InputFileName), TEXT("Failed to read the file: '%s'"), *InputFileName);
@@ -14,8 +13,7 @@ FString FTask011::Run(const FString& InputFileName)
 	TArray<FString> Lines;
 	FileContent.ParseIntoArrayLines(Lines);
 
-	TArray<int32> LeftColumn;
-	TArray<int32> RightColumn;
+	TArray<TArray<int32>> Matrix;
 	for (const FString& Line : Lines)
 	{
 		TArray<FString> Columns;
@@ -34,20 +32,36 @@ FString FTask011::Run(const FString& InputFileName)
 
 			Numbers.Add(Number);
 		}
-
-		LeftColumn.Add(Numbers[0]);
-		RightColumn.Add(Numbers[1]);
+		Matrix.Add(Numbers);
 	}
 
-	LeftColumn.Sort();
-	RightColumn.Sort();
-
-	int32 Sum = 0;
-	for (int32 i = 0; i < LeftColumn.Num(); i++)
+	int32 SafeRowCount = 0;
+	for (TArray<int32> Row : Matrix)
 	{
-		const int32 d = FMath::Abs(LeftColumn[i] - RightColumn[i]);
-		Sum += d;
+		bool IsIncreasing = Row[0] < Row[1];
+		bool IsSafe = true;
+		for (int32 i = 1; i < Row.Num(); i++)
+		{
+			const int32 d = Row[i] - Row[i - 1];
+			if (FMath::Abs(d) < 1 ||
+				3 < FMath::Abs(d))
+			{
+				IsSafe = false;
+				break;
+			}
+			if (IsIncreasing
+				? d <= 0
+				: 0 <= d)
+			{
+				IsSafe = false;
+				break;
+			}
+		}
+		if (IsSafe)
+		{
+			SafeRowCount++;
+		}
 	}
 
-	return FString::FromInt(Sum);
+	return FString::FromInt(SafeRowCount);
 }

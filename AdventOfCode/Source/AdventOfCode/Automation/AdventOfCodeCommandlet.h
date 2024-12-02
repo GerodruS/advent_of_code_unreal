@@ -15,7 +15,7 @@ public:
 	virtual int32 Main(const FString& Params) override;
 
 private:
-	static void Compare(const FString& A, const FString& B);
+	static void Compare(const FString& FileName, const FString& A, const FString& B);
 	static FString LoadFile(const FString& FileName);
 
 };
