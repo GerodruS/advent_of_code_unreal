@@ -8,6 +8,8 @@
 #include "AdventOfCode/Year2024/Task032.h"
 #include "AdventOfCode/Year2024/Task041.h"
 #include "AdventOfCode/Year2024/Task042.h"
+#include "AdventOfCode/Year2024/Task051.h"
+#include "AdventOfCode/Year2024/Task052.h"
 #include "Misc/DefaultValueHelper.h"
 #include "Misc/Paths.h"
 #include "Misc/FileHelper.h"
@@ -89,6 +91,22 @@ int32 UAdventOfCodeCommandlet::Main(const FString& Params)
 	{
 		const FString FileName = "04_2_2.txt";
 		Compare(FileName, FTask042::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
+	}
+	{
+		const FString FileName = "05_1_1.txt";
+		Compare(FileName, FTask051::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
+	}
+	{
+		const FString FileName = "05_1_2.txt";
+		Compare(FileName, FTask051::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
+	}
+	{
+		const FString FileName = "05_2_1.txt";
+		Compare(FileName, FTask052::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
+	}
+	{
+		const FString FileName = "05_2_2.txt";
+		Compare(FileName, FTask052::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
 	}
 	return 0; // Return 0 on success
 }
