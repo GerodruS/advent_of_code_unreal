@@ -18,6 +18,8 @@
 #include "AdventOfCode/Year2024/Task082.h"
 #include "AdventOfCode/Year2024/Task101.h"
 #include "AdventOfCode/Year2024/Task102.h"
+#include "AdventOfCode/Year2024/Task181.h"
+#include "AdventOfCode/Year2024/Task182.h"
 #include "Misc/DefaultValueHelper.h"
 #include "Misc/Paths.h"
 #include "Misc/FileHelper.h"
@@ -179,6 +181,22 @@ int32 UAdventOfCodeCommandlet::Main(const FString& Params)
 	{
 		const FString FileName = "10_2_2.txt";
 		Compare(FileName, FTask102::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
+	}
+	{
+		const FString FileName = "18_1_1.txt";
+		Compare(FileName, FTask181::Run(InputFolder / FileName, 12),LoadFile(OutputFolder / FileName));
+	}
+	{
+		const FString FileName = "18_1_2.txt";
+		Compare(FileName, FTask181::Run(InputFolder / FileName, 1024),LoadFile(OutputFolder / FileName));
+	}
+	{
+		const FString FileName = "18_2_1.txt";
+		Compare(FileName, FTask182::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
+	}
+	{
+		const FString FileName = "18_2_2.txt";
+		Compare(FileName, FTask182::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
 	}
 	return 0; // Return 0 on success
 }
