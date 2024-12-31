@@ -21,6 +21,7 @@
 #include "AdventOfCode/Year2024/Task181.h"
 #include "AdventOfCode/Year2024/Task182.h"
 #include "AdventOfCode/Year2024/Task191.h"
+#include "AdventOfCode/Year2024/Task251.h"
 #include "Misc/DefaultValueHelper.h"
 #include "Misc/Paths.h"
 #include "Misc/FileHelper.h"
@@ -206,6 +207,14 @@ int32 UAdventOfCodeCommandlet::Main(const FString& Params)
 	{
 		const FString FileName = "19_1_2.txt";
 		Compare(FileName, FTask191::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
+	}
+	{
+		const FString FileName = "25_1_1.txt";
+		Compare(FileName, FTask251::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
+	}
+	{
+		const FString FileName = "25_1_2.txt";
+		Compare(FileName, FTask251::Run(InputFolder / FileName),LoadFile(OutputFolder / FileName));
 	}
 	return 0; // Return 0 on success
 }
